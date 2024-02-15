@@ -23,7 +23,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: !startsWith(github.event.pull_request.title, 'Release:')
+    if: ${{ !startsWith(github.event.pull_request.title, 'Release:') }}
     steps:
       - uses: actions/checkout@v4
         with:
