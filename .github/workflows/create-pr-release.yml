@@ -1,4 +1,4 @@
-name: Bump version from release and create tag
+name: Create pull request to bump version
 
 on:
   push:
@@ -40,15 +40,24 @@ jobs:
           version-type: ${{ github.event.inputs.version }}
           skip-tag: true
           skip-push: true
+          commit-message: 'CI: bumps version to {{version}}'
+
+      - name: Get new version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+
+      - name: Print the version
+        run: echo "The version was ${{ steps.get-version.outputs.version }}"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: Release
-          title: 'Release: ${{ version }}'
+          title: 'Release: ${{ steps.get-version.outputs.version }}'
           body: Draft a new release from Main branch
           base: main
-          branch: 'release/{{version}}'
+          branch: 'release/${{ steps.get-version.outputs.version }}'
           delete-branch: true
 
 
