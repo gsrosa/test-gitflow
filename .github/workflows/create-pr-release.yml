@@ -38,6 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version-type: ${{ github.event.inputs.version }}
+          skip-tag: true
           skip-push: true
           commit-message: 'CI: bumps version to {{version}}'
 
