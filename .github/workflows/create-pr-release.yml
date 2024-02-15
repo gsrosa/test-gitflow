@@ -53,7 +53,7 @@ jobs:
           body: |
             New release
             - version ${{ env.PACKAGE_VERSION }}
-            - created by [create-pull-request][1]
+            - created by Bot
           labels: |
             automated pr
             release
