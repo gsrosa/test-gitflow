@@ -50,9 +50,7 @@ jobs:
         with:
           commit-message: Release
           title: 'Release: ${{ env.PACKAGE_VERSION }}'
-          body: Draft a new release from Main branch
+          body: Draft a new release (${{ env.PACKAGE_VERSION }}) of kind ${{ github.event.inputs.version }} from branch (main)
           base: main
           branch: 'release/${{ env.PACKAGE_VERSION }}'
           delete-branch: true
-
-
