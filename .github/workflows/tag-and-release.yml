@@ -31,5 +31,3 @@ jobs:
         body_path: ./release_notes.md
         draft: false
         prerelease: false
-    - name: Delete release_notes file
-      run: rm release_notes.md
