@@ -9,7 +9,7 @@ on:
       - ready_for_review
   push:
     branches:
-      - main
+      - test
   workflow_dispatch:
     inputs:
       version:
@@ -22,14 +22,24 @@ on:
           - minor
           - patch
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Latest Version: ${{ github.event.inputs.version }}"
+
   lint_and_build:
     name: Lint and Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: 18
           cache: 'npm'
