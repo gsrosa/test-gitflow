@@ -48,9 +48,16 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: Release
+          commit-message: 'Release: ${{ env.PACKAGE_VERSION }}'
           title: 'Release: ${{ env.PACKAGE_VERSION }}'
-          body: Draft a new release (${{ env.PACKAGE_VERSION }}) of kind ${{ github.event.inputs.version }} from branch (main)
+          body: |
+            New release
+            - version ${{ env.PACKAGE_VERSION }}
+            - created by [create-pull-request][1]
+          labels: |
+            automated pr
+            release
+            tag
           base: main
           branch: 'release/${{ env.PACKAGE_VERSION }}'
           delete-branch: true
