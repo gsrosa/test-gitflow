@@ -40,7 +40,7 @@ jobs:
           version-type: ${{ github.event.inputs.version }}
           skip-tag: true
           skip-push: true
-          commit-message: 'CI: bumps version to {{version}}'
+          commit-message: 'Bump version to {{version}}'
 
       - name: package-version
         run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
