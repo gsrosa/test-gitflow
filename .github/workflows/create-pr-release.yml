@@ -1,6 +1,17 @@
 name: Create a release pull request
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version name'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
   push:
     branches:
       - main
@@ -26,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          version-type: minor
+          version-type: ${{ github.event.inputs.version }}
           tag-prefix: v
           target-branch: main
-          commit-message: 'CI: bumps version to {{version}} [skip ci]'
+          commit-message: 'CI: bumps version to {{version}}'
