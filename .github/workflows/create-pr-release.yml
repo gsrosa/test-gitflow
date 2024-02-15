@@ -48,6 +48,6 @@ jobs:
           title: 'Release: ${{ github.event.inputs.version }}'
           body: test
           base: main
-          branch: release/${{ github.event.inputs.version }}
+          branch: 'release/${{ github.event.inputs.version }}'
 
 
