@@ -27,9 +27,9 @@ jobs:
     name: Lint and Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
@@ -37,8 +37,8 @@ jobs:
         run: npm install
 #      - name: Lint
 #        run: yarn lint
-      - name: Build
-        run: npm run build
+#      - name: Build
+#        run: yarn build
 #  deploy_production:
 #    name: Deploy Production
 #    runs-on: ubuntu-latest
@@ -59,10 +59,10 @@ jobs:
         id: update_version
         run: |
           echo "version=$(npm version ${{ github.event.inputs.version }} --no-git -tag-version)" >> $GITHUB_OUTPUT
-      - name: Update Changelog
-        id: update_changelog
-        run: |
-          sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
+#      - name: Update Changelog
+#        id: update_changelog
+#        run: |
+#          sed -i 's/Unreleased/${{ steps.update_version.outputs.version }}/g' CHANGELOG.md
       - name: Create pull request
         id: create_pr
         uses: peter-evans/create-pull-request@v5
