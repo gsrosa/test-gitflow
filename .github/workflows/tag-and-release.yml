@@ -2,14 +2,14 @@ name: Tag and Release Workflow
 
 on:
   pull_request:
-  types:
-    - closed
+    types:
+      - closed
 
 jobs:
   release:
-  runs-on: ubuntu-latest
-  if: startsWith(github.event.pull_request.title, 'Release:')
-  steps:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.pull_request.title, 'Release:')
+    steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
